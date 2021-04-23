@@ -23,6 +23,7 @@ use uhc\game\Game;
 use uhc\game\utils\GameState;
 use uhc\scenarios\defaults\Backpacks;
 use uhc\scenarios\defaults\BloodDiamonds;
+use uhc\scenarios\defaults\Bookception;
 use uhc\scenarios\defaults\CatEyes;
 use uhc\scenarios\defaults\Cutclean;
 use uhc\scenarios\defaults\DeathPole;
@@ -78,6 +79,9 @@ class ScenarioManager implements ScenarioInterface
         $this->registerScenario(new Snowless());
         $this->registerScenario(new Timber());
         $this->registerScenario(new Timebomb());
+        $this->registerScenario(new Bookception());
+
+        //TODO
 
         # Register listener
         $this->getGame()->getPlugin()->getServer()->getPluginManager()->registerEvents(new ScenarioListener(), $this->getGame()->getPlugin());
