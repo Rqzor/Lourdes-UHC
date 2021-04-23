@@ -1,0 +1,142 @@
+webhooks:
+  channel-announce: 'https://discord.com/api/webhooks/804750744242487386/SRl7onZ9hsyIAOcfIPibfy99b0ILTmcdlQshAY9CNSb88cxwCoOT_fg-GANMaOCFLgJ2'
+  channel-winners: 'https://discord.com/api/webhooks/804751283142918154/j97wNU60-pRv8Pb8paqH2sr3zqmgNh931QM0jlgcNWdnm3VWdctqtvVK4Vyl1656Z1ki'
+  channel-kills: 'https://discord.com/api/webhooks/810573562460897342/Gj6xHxhCbbYwH0wFopqF-cP-cj8e9Q419zUAbSRIsZAaEb0glm-XoXIOxmv6T2L4Wt2j'
+  channel-bans: 'https://discord.com/api/webhooks/804751423358894082/b9HYrx1RQWlEIV2vaUEnRc4fQO4HLMGusWY0xzuXbkOrjFLOUYlBv8lZozYlgq_2Fwbd'
+times:
+  starting: 20
+  final-heal: 600
+  global-mute: 900
+  grace-period: 1200
+ranks:
+  owner:
+    prefix: '§dOwner'
+    permissions: []
+  admin:
+    prefix: '§2Admin'
+    permissions: []
+  mod:
+    prefix: '§3Mod'
+    permissions:
+      - 'pocketmine.command.teleport'
+      - 'pocketmine.command.say'
+      - 'globalmute.permission'
+      - 'pocketmine.command.gamemode'
+      - 'mute.command.permission'
+      - 'pocketmine.command.ban.player'
+      - 'pocketmine.command.unban.player'
+      - 'freeze.command.permission'
+      - 'uhc.command.permission'
+      - 'pocketmine.command.effect'
+      - 'pocketmine.command.enchant'
+      - 'mw.cmd'
+      - 'mw.cmd.teleport'
+      - 'mw.cmd.load'
+      - 'mw.cmd.unload'
+      - 'mw.cmd.list'
+  trial-mod:
+    prefix: '§bTrial-Mod'
+    permissions:
+      - 'pocketmine.command.teleport'
+      - 'alias.command.permission'
+      - 'globalmute.permission'
+      - 'pocketmine.command.gamemode'
+      - 'mute.command.permission'
+      - 'pocketmine.command.ban.player'
+      - 'pocketmine.command.unban.player'
+      - 'freeze.command.permission'
+      - 'uhc.command.permission'
+      - 'pocketmine.command.effect'
+      - 'pocketmine.command.enchant'
+      - 'mw.cmd'
+      - 'mw.cmd.teleport'
+      - 'mw.cmd.load'
+      - 'mw.cmd.unload'
+      - 'mw.cmd.list'
+  host:
+    prefix: '§5Host'
+    permissions:
+      - 'globalmute.permission'
+      - 'pocketmine.command.teleport'
+      - 'pocketmine.command.gamemode'
+      - 'mute.command.permission'
+      - 'pocketmine.command.ban.player'
+      - 'pocketmine.command.unban.player'
+      - 'freeze.command.permission'
+      - 'uhc.command.permission'
+      - 'pocketmine.command.effect'
+      - 'pocketmine.command.enchant'
+      - 'mw.cmd'
+      - 'mw.cmd.teleport'
+      - 'mw.cmd.load'
+      - 'mw.cmd.unload'
+      - 'mw.cmd.list'
+  trial-host:
+    prefix: '§9Trial-Host'
+    permissions:
+      - 'globalmute.permission'
+      - 'mute.command.permission'
+      - 'pocketmine.command.ban.player'
+      - 'pocketmine.command.unban.player'
+      - 'freeze.command.permission'
+      - 'uhc.command.permission'
+      - 'pocketmine.command.effect'
+      - 'pocketmine.command.enchant'
+      - 'mw.cmd'
+      - 'mw.cmd.teleport'
+      - 'mw.cmd.load'
+      - 'mw.cmd.unload'
+      - 'mw.cmd.list'
+  vip+:
+    prefix: '§6Vip+'
+    permissions:
+      - 'nick.command.permission'
+      - 'fly.command.permission'
+      - 'globalmute.permission'
+      - 'sounds.permission'
+  vip:
+    prefix: '§eVip'
+    permissions:
+      - 'fly.command.permission'
+      - 'globalmute.permission'
+  booster:
+    prefix: '§5Booster'
+    permissions:
+      - 'globalmute.permission'
+  streamer:
+    prefix: '§cStreamer'
+    permissions: []
+  youtuber:
+    prefix: '§4You§fTuber'
+    permissions: []
+  famous:
+    prefix: '§5Famous'
+    permissions: []
+prefix:
+  argentina: '§b[A§fR§bG]'
+  mexico: '§a[M§fE§4X]'
+  united-states: '§4[U§fS§1A]'
+  spain: '§4[E§6S§4P]'
+  paraguay: '§c[P§fA§9R]'
+  france: '§9[F§fR§cA]'
+  italy: '§2[I§fT§4A]'
+  uruguay: '§b[U§fR§bU]'
+  el-salvador: '§1[S§fV]'
+  peru: '§4[P§fE§4R]'
+  bolivia: '§4[B§6O§2L]'
+  panama: '§f[P§4A§1N]'
+  nicaragua: '§3[N§fI§3C]'
+  ecuador: '§e[E§1C§4U]'
+  venezuela: '§6[V§1N§4L]'
+  guatemala: '§3[G§fU§3A]'
+  colombia: '§6[C§1O§4L]'
+  germany: '§0[A§4L§6M]'
+  saudi-arabia: '§2[K§fS§2A]'
+  dominican-republic: '§1[D§fO§4M]'
+  chile: '§f[C§1H§4L]'
+  brazil: '§2[B§eR§1A]'
+  canada: '§4[C§fA§4N]'
+  china: '§4[CHI]'
+  costa-rica: '§1[C§4R]'
+  kevin: ''
+  perro: '§7[§0Perro§7]'
