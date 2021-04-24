@@ -11,6 +11,7 @@ use pocketmine\utils\TextFormat;
 use uhc\game\utils\GameState;
 use uhc\player\GamePlayer;
 use uhc\scenarios\defaults\CatEyes;
+use uhc\scenarios\defaults\SuperHeros;
 
 /**
  * Class RespawnCommand
@@ -73,6 +74,10 @@ class RespawnCommand extends Command
 
             if (($scenario = $sender->getGame()->getScenarios()->isActiveByName('Cat Eyes')) != null) {
                 assert($scenario instanceof CatEyes);
+                $scenario->addEffect($player);
+            }
+            if (($scenario = $sender->getGame()->getScenarios()->isActiveByName('Super Heros')) != null){
+                assert($scenario instanceof SuperHeros);
                 $scenario->addEffect($player);
             }
             $player->sendMessage(TextFormat::GREEN . 'You have been given the starting items.');

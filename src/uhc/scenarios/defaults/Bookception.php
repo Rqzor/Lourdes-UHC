@@ -23,11 +23,17 @@ use uhc\scenarios\ScenarioManager;
  */
 class Bookception extends Scenario{
 
+    /**
+     * Bookception constructor.
+     */
     public function __construct()
     {
-        parent::__construct("BookCeption", "Upon a player's death, an enchanted book will drop in his stuff", Item::get(Item::ENCHANTED_BOOK), Scenario::PRIORITY_LOW);
+        parent::__construct("BookCeption", "Upon a player's death, an enchanted book will drop in his stuff", Item::get(Item::ENCHANTED_BOOK), self::PRIORITY_LOW);
     }
 
+    /**
+     * @param EntityDeathEvent $event
+     */
     public function handleEntityDeath(EntityDeathEvent $event): void
     {
         $entity = $event->getEntity();

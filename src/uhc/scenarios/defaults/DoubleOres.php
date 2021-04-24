@@ -22,7 +22,7 @@ class DoubleOres extends Scenario
      */
     public function __construct()
     {
-        parent::__construct('Double Ores', 'All ores mined are multiplied by 2', ItemFactory::get(ItemIds::GOLD_INGOT), self::PRIORITY_HIGH);
+        parent::__construct('Double Ores', 'All ores mined are multiplied by 2', ItemFactory::get(ItemIds::GOLD_INGOT), self::PRIORITY_MEDIUM);
     }
 
     /**

@@ -27,6 +27,8 @@ use uhc\scenarios\defaults\Bookception;
 use uhc\scenarios\defaults\CatEyes;
 use uhc\scenarios\defaults\Cutclean;
 use uhc\scenarios\defaults\DeathPole;
+use uhc\scenarios\defaults\DiamondLess;
+use uhc\scenarios\defaults\DiamondLimit;
 use uhc\scenarios\defaults\DoNotDisturb;
 use uhc\scenarios\defaults\DoubleOres;
 use uhc\scenarios\defaults\Fireless;
@@ -35,6 +37,7 @@ use uhc\scenarios\defaults\NoClean;
 use uhc\scenarios\defaults\NoFall;
 use uhc\scenarios\defaults\Rodless;
 use uhc\scenarios\defaults\Snowless;
+use uhc\scenarios\defaults\SuperHeros;
 use uhc\scenarios\defaults\Timber;
 use uhc\scenarios\defaults\Timebomb;
 
@@ -80,6 +83,9 @@ class ScenarioManager implements ScenarioInterface
         $this->registerScenario(new Timber());
         $this->registerScenario(new Timebomb());
         $this->registerScenario(new Bookception());
+        $this->registerScenario(new DiamondLess());
+        $this->registerScenario(new DiamondLimit());
+        $this->registerScenario(new SuperHeros());
 
         //TODO
 

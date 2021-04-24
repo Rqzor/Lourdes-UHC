@@ -50,7 +50,7 @@ class UHCCommand extends Command
             if ($sender->getData()->isHost())
                 FormUtils::createMainForm($sender);
             else
-                $sender->sendMessage(TextFormat::RED . 'Please complete the arguments.');
+                $sender->sendMessage(TextFormat::RED . '/uhc <start|announce|host|time|players|remove>');
             return;
         }
 
