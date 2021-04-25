@@ -1,12 +1,11 @@
 <?php
 
+declare(strict_types=1);
 
 namespace uhc\scenarios\defaults;
 
-
 use pocketmine\block\BlockIds;
 use pocketmine\event\block\BlockBreakEvent;
-use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\item\ItemFactory;
 use pocketmine\item\ItemIds;
 use uhc\scenarios\Scenario;
@@ -33,9 +32,8 @@ class DiamondLess extends Scenario
     {
         $block = $event->getBlock();
 
-        if ($block->getId() == BlockIds::DIAMOND_ORE){
+        if ($block->getId() == BlockIds::DIAMOND_ORE) {
             $event->setDrops([]);
         }
     }
-
 }

@@ -69,9 +69,12 @@ class ScenarioManager implements ScenarioInterface
         # Register scenarios
         $this->registerScenario(new Backpacks());
         $this->registerScenario(new BloodDiamonds());
+        $this->registerScenario(new Bookception());
         $this->registerScenario(new CatEyes());
         $this->registerScenario(new Cutclean());
         $this->registerScenario(new DeathPole());
+        $this->registerScenario(new DiamondLess());
+        $this->registerScenario(new DiamondLimit());
         $this->registerScenario(new DoNotDisturb());
         $this->registerScenario(new DoubleOres());
         $this->registerScenario(new Fireless());
@@ -80,14 +83,9 @@ class ScenarioManager implements ScenarioInterface
         $this->registerScenario(new NoFall());
         $this->registerScenario(new Rodless());
         $this->registerScenario(new Snowless());
+        $this->registerScenario(new SuperHeros());
         $this->registerScenario(new Timber());
         $this->registerScenario(new Timebomb());
-        $this->registerScenario(new Bookception());
-        $this->registerScenario(new DiamondLess());
-        $this->registerScenario(new DiamondLimit());
-        $this->registerScenario(new SuperHeros());
-
-        //TODO
 
         # Register listener
         $this->getGame()->getPlugin()->getServer()->getPluginManager()->registerEvents(new ScenarioListener(), $this->getGame()->getPlugin());

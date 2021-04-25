@@ -11,6 +11,11 @@ use pocketmine\item\ItemIds;
 use uhc\player\GamePlayer;
 use uhc\scenarios\Scenario;
 use pocketmine\utils\TextFormat as TE;
+
+/**
+ * Class DiamondLimit
+ * @package uhc\scenarios\defaults
+ */
 class DiamondLimit extends Scenario
 {
 
@@ -22,7 +27,7 @@ class DiamondLimit extends Scenario
      */
     public function __construct()
     {
-        parent::__construct('Diamond Limit', 'You can\'t mine more than 16 diamond', ItemFactory::get(ItemIds::DIAMOND,0, 16), self::PRIORITY_HIGH);
+        parent::__construct('Diamond Limit', 'You can\'t mine more than 16 diamond', ItemFactory::get(ItemIds::DIAMOND, 0, 16), self::PRIORITY_HIGH);
     }
 
     /**
@@ -38,11 +43,11 @@ class DiamondLimit extends Scenario
                 if ($this->canMineDiamond($player)) {
                     $this->addCount($player);
                     $count = $this->getCount($player);
-                    $player->sendTip(TE::GREEN . "Diamond Limit: " . $count . "/16");
-                }else{
+                    $player->sendTip(TE::GREEN . 'Diamond Limit: ' . $count . '/16');
+                } else {
                     $event->setDrops([]);
                     $event->setXpDropAmount(0);
-                    $player->sendMessage(TE::RED . "You have reached your limit of diamond !");
+                    $player->sendMessage(TE::RED . 'You have reached your limit of diamond !');
                 }
             }
         }
@@ -53,13 +58,7 @@ class DiamondLimit extends Scenario
      */
     public function addCount(GamePlayer $player): void
     {
-        if (!isset($this->diamondCount[$player->getName()])){
-            $this->diamondCount[$player->getName()] = 1;
-        }else{
-            $oldCount = $this->getCount($player);
-            $newCount = $oldCount + 1;
-            $this->diamondCount[$player->getName()] = $newCount;
-        }
+        $this->diamondCount[$player->getName()] =+ 1;
     }
 
     /**
@@ -68,7 +67,7 @@ class DiamondLimit extends Scenario
      */
     public function getCount(GamePlayer $player): int
     {
-        if (isset($this->diamondCount[$player->getName()])){
+        if (isset($this->diamondCount[$player->getName()])) {
             return $this->diamondCount[$player->getName()];
         }
         $this->diamondCount[$player->getName()] = 0;
@@ -81,10 +80,9 @@ class DiamondLimit extends Scenario
      */
     public function canMineDiamond(GamePlayer $player): bool
     {
-        if (!isset($this->diamondCount[$player->getName()])){
+        if (!isset($this->diamondCount[$player->getName()])) {
             return true;
         }
         return $this->diamondCount[$player->getName()] < 16;
     }
-
 }

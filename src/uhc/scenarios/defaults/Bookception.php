@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace uhc\scenarios\defaults;
-
 
 use pocketmine\entity\Living;
 use pocketmine\event\entity\EntityDeathEvent;
@@ -10,25 +10,24 @@ use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\Item;
-use pocketmine\level\Location;
 use uhc\player\disconnect\DisconnectMob;
 use uhc\player\GamePlayer;
 use uhc\scenarios\modules\timebomb\TimebombTile;
 use uhc\scenarios\Scenario;
-use uhc\scenarios\ScenarioManager;
 
 /**
  * Class Bookception
  * @package uhc\scenarios\defaults
  */
-class Bookception extends Scenario{
+class Bookception extends Scenario
+{
 
     /**
      * Bookception constructor.
      */
     public function __construct()
     {
-        parent::__construct("BookCeption", "Upon a player's death, an enchanted book will drop in his stuff", Item::get(Item::ENCHANTED_BOOK), self::PRIORITY_LOW);
+        parent::__construct('BookCeption', 'Upon a player\'s death, an enchanted book will drop in his stuff', Item::get(Item::ENCHANTED_BOOK), self::PRIORITY_LOW);
     }
 
     /**
@@ -63,16 +62,16 @@ class Bookception extends Scenario{
         if ($living instanceof DisconnectMob || $living instanceof GamePlayer) {
             $item = $this->getBook();
 
-            if ($living->getGame()->getScenarios()->isActiveByName('TimeBomb')){
-                foreach ($living->getLevel()->getTiles() as $tile){
-                    if ($tile instanceof TimebombTile){
-                        if (!is_null($tile->getOwner()) && $tile->getOwner() == $living->getName()){
+            if ($living->getGame()->getScenarios()->isActiveByName('TimeBomb')) {
+                foreach ($living->getLevel()->getTiles() as $tile) {
+                    if ($tile instanceof TimebombTile) {
+                        if (!is_null($tile->getOwner()) && $tile->getOwner() == $living->getName()) {
                             $tile->getInventory()->addItem($item);
                         }
                     }
                 }
-            }else {
-                $living->getLevel()->dropItem($living->asVector3(), $item);
+            } else {
+                $living->dropItem($item);
             }
         }
     }
@@ -84,9 +83,9 @@ class Bookception extends Scenario{
     {
         //Enchant ID max = 22 because the rest is bad,
         $enchantId = mt_rand(0, 22);
-        $item = Item::get(Item::ENCHANTED_BOOK,0, 1);
+        $item = Item::get(Item::ENCHANTED_BOOK, 0, 1);
 
-        switch ($enchantId){
+        switch ($enchantId) {
             case Enchantment::SHARPNESS:
             case Enchantment::BANE_OF_ARTHROPODS:
             case Enchantment::EFFICIENCY:
@@ -124,14 +123,11 @@ class Bookception extends Scenario{
             case Enchantment::SILK_TOUCH:
                 $enchantLevel = 1;
                 break;
-
             default:
                 $enchantLevel = 1;
                 break;
         }
-
         $item->addEnchantment(new EnchantmentInstance(Enchantment::getEnchantment($enchantId), $enchantLevel));
         return $item;
     }
-
 }

@@ -26,7 +26,7 @@ class DoNotDisturb extends Scenario
      */
     public function __construct()
     {
-        parent::__construct('Do Not Disturb', 'When you hit a player, no one can hit you and your opponent for 30 seconds', Item::get(387), self::PRIORITY_HIGH);
+        parent::__construct('Do Not Disturb', 'When you hit a player, no one can hit you and your opponent for 20 seconds', Item::get(387), self::PRIORITY_HIGH);
     }
 
     /**

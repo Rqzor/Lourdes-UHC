@@ -92,6 +92,12 @@ class RespawnCommand extends Command
                 assert($scenario instanceof CatEyes);
                 $scenario->addEffect($player);
             }
+
+            if (($scenario = $sender->getGame()->getScenarios()->isActiveByName('Super Heros')) != null){
+                assert($scenario instanceof SuperHeros);
+                $scenario->addEffect($player);
+            }
+
             $player->getArmorInventory()->setContents(array_map(function (array $data): Item {
                 return Item::jsonDeserialize($data);
             }, $contents['armorContents']));

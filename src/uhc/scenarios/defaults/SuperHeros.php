@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace uhc\scenarios\defaults;
-
 
 use pocketmine\entity\Effect;
 use pocketmine\entity\EffectInstance;
@@ -12,8 +12,15 @@ use uhc\event\GameStartEvent;
 use uhc\player\GamePlayer;
 use uhc\scenarios\Scenario;
 
+/**
+ * Class SuperHeros
+ * @package uhc\scenarios\defaults
+ */
 class SuperHeros extends Scenario
 {
+
+    /** @var array */
+    private $effects = [];
 
     /**
      * SuperHeros constructor.
@@ -24,13 +31,41 @@ class SuperHeros extends Scenario
     }
 
     /**
+     * @param GamePlayer|string $player
+     * @return bool
+     */
+    public function hasEffect($player): bool
+    {
+        $name = $player instanceof GamePlayer ? $player->getName() : $player;
+        return isset($this->effects[$name]);
+    }
+
+    /**
+     * @param $player
+     * @return int
+     */
+    public function getEffect($player): int
+    {
+        $name = $player instanceof GamePlayer ? $player->getName() : $player;
+        return $this->effects[$name];
+    }
+
+    /**
      * @param GamePlayer $player
      */
     public function addEffect(GamePlayer $player): void
     {
-        $effectId = $this->getRandomEffect();
-        $amplifier = $effectId == 21 ? 4 : 1;
-        $player->addEffect(new EffectInstance(Effect::getEffect($effectId), INT32_MAX, $amplifier, false));
+        if ($this->hasEffect($player)) {
+            $effectData = $this->getEffect($player);
+            $id = (int) $effectData[0];
+            $amplifier = (int) $effectData[1];
+            $player->addEffect(new EffectInstance(Effect::getEffect($id), INT32_MAX, $amplifier, false));
+            return;
+        }
+        $id = $this->getRandomEffect();
+        $amplifier = $id == 21 ? 4 : 1;
+        $player->addEffect(new EffectInstance(Effect::getEffect($id), INT32_MAX, $amplifier, false));
+        $this->effects[$player->getName()] = [$id, $amplifier];
     }
 
     /**
@@ -44,7 +79,6 @@ class SuperHeros extends Scenario
             Effect::RESISTANCE,
             Effect::HEALTH_BOOST,
         ];
-
         return $effects[array_rand($effects)];
     }
 
@@ -61,5 +95,4 @@ class SuperHeros extends Scenario
             $player->addEffect(new EffectInstance(Effect::getEffect($effectId), INT32_MAX, $amplifier, false));
         }
     }
-
 }
