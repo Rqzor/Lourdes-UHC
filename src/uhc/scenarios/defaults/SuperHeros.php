@@ -21,6 +21,13 @@ class SuperHeros extends Scenario
 {
 
     /** @var array */
+    private static $randomEffects = [
+        Effect::SPEED,
+        Effect::STRENGTH,
+        Effect::RESISTANCE,
+        Effect::HEALTH_BOOST,
+    ];
+    /** @var array */
     private $effects = [];
 
     /**
@@ -75,13 +82,7 @@ class SuperHeros extends Scenario
      */
     public function getRandomEffect(): int
     {
-        $effects = [
-            Effect::SPEED,
-            Effect::STRENGTH,
-            Effect::RESISTANCE,
-            Effect::HEALTH_BOOST,
-        ];
-        return $effects[array_rand($effects)];
+        return self::$randomEffects[array_rand(self::$randomEffects)];
     }
 
     /**
