@@ -8,6 +8,7 @@ use pocketmine\entity\Effect;
 use pocketmine\entity\EffectInstance;
 use pocketmine\item\ItemFactory;
 use pocketmine\item\ItemIds;
+use pocketmine\utils\TextFormat;
 use uhc\event\GameStartEvent;
 use uhc\player\GamePlayer;
 use uhc\scenarios\Scenario;
@@ -66,6 +67,7 @@ class SuperHeros extends Scenario
         $amplifier = $id == 21 ? 4 : 1;
         $player->addEffect(new EffectInstance(Effect::getEffect($id), INT32_MAX, $amplifier, false));
         $this->effects[$player->getName()] = [$id, $amplifier];
+        $player->sendMessage(TextFormat::GREEN . 'You are now a super hero. Look what effect you have received!');
     }
 
     /**
@@ -89,10 +91,7 @@ class SuperHeros extends Scenario
     {
         $game = $event->getGame();
 
-        foreach ($game->getPlayers('online') as $player) {
-            $effectId = $this->getRandomEffect();
-            $amplifier = $effectId == 21 ? 4 : 1;
-            $player->addEffect(new EffectInstance(Effect::getEffect($effectId), INT32_MAX, $amplifier, false));
-        }
+        foreach ($game->getPlayers('online') as $player)
+            $this->addEffect($player);
     }
 }
