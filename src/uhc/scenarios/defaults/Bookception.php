@@ -37,9 +37,8 @@ class Bookception extends Scenario
     {
         $entity = $event->getEntity();
 
-        if ($entity instanceof DisconnectMob && $entity->getData() != null) {
+        if ($entity instanceof DisconnectMob && $entity->getData() != null)
             $this->dropBook($entity);
-        }
     }
 
     /**
@@ -49,9 +48,8 @@ class Bookception extends Scenario
     {
         $player = $event->getPlayer();
 
-        if ($player instanceof GamePlayer && $player->isSpawned() && !$player->isInPractice()) {
+        if ($player instanceof GamePlayer && $player->isSpawned() && !$player->isInPractice())
             $this->dropBook($player);
-        }
     }
 
     /**
@@ -62,12 +60,11 @@ class Bookception extends Scenario
         if ($living instanceof DisconnectMob || $living instanceof GamePlayer) {
             $item = $this->getBook();
 
-            if ($living->getGame()->getScenarios()->isActiveByName('TimeBomb')) {
+            if ($living->getGame()->getScenarios()->isActiveByName('TimeBomb') != null) {
                 foreach ($living->getLevel()->getTiles() as $tile) {
                     if ($tile instanceof TimebombTile) {
-                        if (!is_null($tile->getOwner()) && $tile->getOwner() == $living->getName()) {
+                        if (!is_null($tile->getOwner()) && $tile->getOwner() == $living->getName())
                             $tile->getInventory()->addItem($item);
-                        }
                     }
                 }
             } else {
@@ -83,6 +80,7 @@ class Bookception extends Scenario
     {
         //Enchant ID max = 22 because the rest is bad,
         $enchantId = mt_rand(0, 22);
+        $enchantLevel = 1;
         $item = Item::get(Item::ENCHANTED_BOOK, 0, 1);
 
         switch ($enchantId) {
@@ -121,9 +119,6 @@ class Bookception extends Scenario
             case Enchantment::FLAME:
             case Enchantment::INFINITY:
             case Enchantment::SILK_TOUCH:
-                $enchantLevel = 1;
-                break;
-            default:
                 $enchantLevel = 1;
                 break;
         }

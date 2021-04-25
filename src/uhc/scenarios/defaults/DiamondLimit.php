@@ -58,7 +58,9 @@ class DiamondLimit extends Scenario
      */
     public function addCount(GamePlayer $player): void
     {
-        $this->diamondCount[$player->getName()] =+ 1;
+        if (!isset($this->diamondCount[$player->getName()]))
+            $this->diamondCount[$player->getName()] = 0;
+        $this->diamondCount[$player->getName()]++;
     }
 
     /**
@@ -67,11 +69,12 @@ class DiamondLimit extends Scenario
      */
     public function getCount(GamePlayer $player): int
     {
-        if (isset($this->diamondCount[$player->getName()])) {
+        return $this->diamondCount[$player->getName()] ?? 0;
+        /*if (isset($this->diamondCount[$player->getName()])) {
             return $this->diamondCount[$player->getName()];
         }
         $this->diamondCount[$player->getName()] = 0;
-        return $this->diamondCount[$player->getName()];
+        return $this->diamondCount[$player->getName()];*/
     }
 
     /**

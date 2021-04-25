@@ -80,7 +80,7 @@ class DisconnectMob extends Zombie
      * @param bool $fakeName
      * @return string
      */
-    public function getName(bool $fakeName = true): string
+    public function getName(bool $fakeName = false): string
     {
         $c = new Config(AddonLoader::getInstance()->getDataFolder() . 'nicks.yml', Config::YAML);
 

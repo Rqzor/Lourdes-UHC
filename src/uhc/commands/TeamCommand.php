@@ -96,7 +96,7 @@ class TeamCommand extends Command
                 }
                 $player = $sender->getServer()->getPlayer($args[1]);
 
-                if (!$player instanceof GamePlayer) {
+                if (!$player instanceof GamePlayer || !$player->isSpawned()) {
                     $sender->sendMessage(TextFormat::RED . 'Player is not online. Try again.');
                     return;
                 }
