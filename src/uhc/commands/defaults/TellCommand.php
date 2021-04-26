@@ -60,6 +60,7 @@ class TellCommand extends Command
         $game = UHCLoader::getInstance()->getGame();
 
         foreach ($game->getPlayers('host') as $host)
-            $host->sendMessage('[' . $sender->getName() . ' -> ' . $player->getName() . '] ' . implode(' ', $args));
+            if ($host->getName() != $sender->getName())
+                $host->sendMessage('[' . $sender->getName() . ' -> ' . $player->getName() . '] ' . implode(' ', $args));
     }
 }
