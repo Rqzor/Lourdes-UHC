@@ -29,7 +29,7 @@ class Anonymous extends Scenario
      */
     public function __construct()
     {
-        parent::__construct('Anonymous', '', ItemFactory::get(ItemIds::));
+        parent::__construct('Anonymous', '');
     }
 
     /**

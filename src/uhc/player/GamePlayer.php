@@ -6,6 +6,7 @@ namespace uhc\player;
 
 use addon\player\AddonPlayer;
 use pocketmine\network\mcpe\protocol\GameRulesChangedPacket;
+use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 use uhc\game\Game;
 use uhc\game\utils\GameState;
@@ -374,5 +375,35 @@ class GamePlayer extends AddonPlayer
                 $this->getGame()->getBorder()->teleport($this);
         }
         parent::processMostRecentMovements();
+    }
+
+    /**
+     * @param int $currentTick
+     * @return bool
+     */
+    public function onUpdate(int $currentTick): bool
+    {
+        if ($currentTick % 20 === 0) {
+            $this->updateScoreboard();
+            $this->setNameTag(($this->getData()->isHost() ? TextFormat::YELLOW . '[Host] ' : '') . ($this->getGame()->isTeams() ? ($this->getTeam() != null ? $this->getTeam()->getFormat() . ' ' : '') : '') . TextFormat::RED . $this->getName(true) . TextFormat::WHITE . ' ' . round($this->getHealth() / 2, 2) . TextFormat::RED . '❤' . PHP_EOL . TextFormat::YELLOW . $this->getDeviceOS(true) . TextFormat::GRAY . ' | ' . TextFormat::YELLOW . $this->getInput(true));
+        }
+
+        if ($currentTick % 40 === 0) {
+            # Vanish
+            $data = UHCLoader::getInstance()->getGame()->getStaffManager()->getData($this);
+
+            if ($data != null && $data['vanish']) {
+                $players = UHCLoader::getInstance()->getServer()->getOnlinePlayers();
+                array_walk($players, function (Player $p) {
+                    if ($p instanceof GamePlayer && $p->isSpawned())
+                        if (!$p->getData()->isHost())
+                            $p->hidePlayer($this);
+                        else
+                            $p->showPlayer($this);
+                });
+            }
+        }
+        
+        return parent::onUpdate($currentTick);
     }
 }

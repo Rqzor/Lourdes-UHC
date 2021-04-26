@@ -10,6 +10,7 @@ use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\utils\Config;
+use pocketmine\utils\TextFormat;
 use uhc\game\Game;
 use uhc\sessions\types\PlayerSession;
 use uhc\sessions\types\TeamSession;
@@ -135,6 +136,18 @@ class DisconnectMob extends Zombie
     public function getDrops(): array
     {
         return [];
+    }
+
+    /**
+     * @param int $currentTick
+     * @return bool
+     */
+    public function onUpdate(int $currentTick): bool
+    {
+        if ($currentTick % 20 === 0)
+            $this->setNameTag(($this->getGame()->isTeams() ? ($this->getTeam() != null ? $this->getTeam()->getFormat() . ' ' : '') : '') . TextFormat::RED . $this->getName(true) . TextFormat::WHITE . ' ' . round($this->getHealth() / 2, 2) . TextFormat::RED . '❤' . PHP_EOL . TextFormat::YELLOW . $this->getData()->getDevice() . TextFormat::GRAY . ' | ' . TextFormat::YELLOW . $this->getData()->getInput());
+
+        return parent::onUpdate($currentTick);
     }
 
     public function close(): void
