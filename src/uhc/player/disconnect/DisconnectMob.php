@@ -144,9 +144,9 @@ class DisconnectMob extends Zombie
      */
     public function onUpdate(int $currentTick): bool
     {
-        if ($currentTick % 20 === 0)
-            $this->setNameTag(($this->getGame()->isTeams() ? ($this->getTeam() != null ? $this->getTeam()->getFormat() . ' ' : '') : '') . TextFormat::RED . $this->getName(true) . TextFormat::WHITE . ' ' . round($this->getHealth() / 2, 2) . TextFormat::RED . '❤' . PHP_EOL . TextFormat::YELLOW . $this->getData()->getDevice() . TextFormat::GRAY . ' | ' . TextFormat::YELLOW . $this->getData()->getInput());
-
+        if ($this->getData() != null)
+            if ($currentTick % 20 === 0)
+                $this->setNameTag(($this->getGame()->isTeams() ? ($this->getTeam() != null ? $this->getTeam()->getFormat() . ' ' : '') : '') . TextFormat::RED . $this->getName(true) . TextFormat::WHITE . ' ' . round($this->getHealth() / 2, 2) . TextFormat::RED . '❤' . PHP_EOL . TextFormat::YELLOW . $this->getData()->getDevice() . TextFormat::GRAY . ' | ' . TextFormat::YELLOW . $this->getData()->getInput());
         return parent::onUpdate($currentTick);
     }
 

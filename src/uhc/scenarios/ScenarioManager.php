@@ -35,6 +35,7 @@ use uhc\scenarios\defaults\Fireless;
 use uhc\scenarios\defaults\HasteyBoys;
 use uhc\scenarios\defaults\NoClean;
 use uhc\scenarios\defaults\NoFall;
+use uhc\scenarios\defaults\Radar;
 use uhc\scenarios\defaults\Rodless;
 use uhc\scenarios\defaults\Snowless;
 use uhc\scenarios\defaults\SuperHeros;
@@ -81,6 +82,7 @@ class ScenarioManager implements ScenarioInterface
         $this->registerScenario(new HasteyBoys());
         $this->registerScenario(new NoClean());
         $this->registerScenario(new NoFall());
+        $this->registerScenario(new Radar());
         $this->registerScenario(new Rodless());
         $this->registerScenario(new Snowless());
         $this->registerScenario(new SuperHeros());

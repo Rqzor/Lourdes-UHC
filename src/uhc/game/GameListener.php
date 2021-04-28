@@ -422,7 +422,7 @@ class GameListener implements Listener
     {
         $player = $event->getPlayer();
 
-        if ($player instanceof GamePlayer && $player->isSpawned() && $player->isOnline()) {
+        if ($player instanceof GamePlayer && $player->isSpawned()) {
             if ($player->getData()->isFreeze())
                 $event->setCancelled();
         }
