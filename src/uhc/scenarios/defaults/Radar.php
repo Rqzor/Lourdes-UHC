@@ -86,13 +86,13 @@ class Radar extends Scenario
         $item = $player->getInventory()->getItemInHand();
 
         if ($player instanceof GamePlayer && GameValues::$RUNNING >= GameValues::$GRACE_PERIOD) {
-            if ($item->getId() == ItemIds::COMPASS && $item->getNamedTag()->hasTag('RadarScenario') && $action == $event::RIGHT_CLICK_AIR) {
+            if ($item->getId() == ItemIds::COMPASS && $action == $event::RIGHT_CLICK_AIR) {
                 $result = $this->findPlayer($player);
 
                 if (count($result) == 0) {
                     $player->sendPopup(TextFormat::RED . 'No nearby players');
                 } else {
-                    $player->sendPopup(TextFormat::LIGHT_PURPLE . $result[0] . TextFormat::GRAY . ' is ' . TextFormat::LIGHT_PURPLE . $result[1] . TextFormat::GRAY . ' lock(s) away from you');
+                    $player->sendPopup(TextFormat::LIGHT_PURPLE . $result[0] . TextFormat::GRAY . ' is ' . TextFormat::LIGHT_PURPLE . (int) $result[1] . TextFormat::GRAY . ' block(s) away from you');
                 }
             }
         }
