@@ -9,6 +9,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\item\Item;
 use pocketmine\utils\TextFormat;
 use uhc\game\utils\GameState;
+use uhc\game\utils\GameUtils;
 use uhc\player\GamePlayer;
 use uhc\scenarios\defaults\CatEyes;
 use uhc\scenarios\defaults\SuperHeros;
@@ -98,12 +99,16 @@ class RespawnCommand extends Command
                 $scenario->addEffect($player);
             }
 
-            $player->getArmorInventory()->setContents(array_map(function (array $data): Item {
-                return Item::jsonDeserialize($data);
-            }, $contents['armorContents']));
-            $player->getInventory()->setContents(array_map(function (array $data): Item {
-                return Item::jsonDeserialize($data);
-            }, $contents['contents']));
+            if (isset($contents['armorContents']) && isset($contents['contents'])) {
+                $player->getArmorInventory()->setContents(isset($contents['armorContents']) ? array_map(function (array $data): Item {
+                    return Item::jsonDeserialize($data);
+                }, $contents['armorContents']) : []);
+                $player->getInventory()->setContents(array_map(function (array $data): Item {
+                    return Item::jsonDeserialize($data);
+                }, $contents['contents']));
+            } else {
+                $player->getInventory()->setContents(GameUtils::getKit('default'));
+            }
             $player->sendMessage(TextFormat::GREEN . 'You have received your last known items.');
         }
         $player->sendMessage(TextFormat::GREEN . 'You have been respawned. Good luck!');
