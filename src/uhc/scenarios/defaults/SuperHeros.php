@@ -50,9 +50,9 @@ class SuperHeros extends Scenario
 
     /**
      * @param $player
-     * @return int
+     * @return array
      */
-    public function getEffect($player): int
+    public function getEffect($player): array
     {
         $name = $player instanceof GamePlayer ? $player->getName() : $player;
         return $this->effects[$name];
@@ -71,7 +71,7 @@ class SuperHeros extends Scenario
             return;
         }
         $id = $this->getRandomEffect();
-        $amplifier = $id == 21 ? 4 : 1;
+        $amplifier = $id == 21 ? 2 : 1;
         $player->addEffect(new EffectInstance(Effect::getEffect($id), INT32_MAX, $amplifier, false));
         $this->effects[$player->getName()] = [$id, $amplifier];
         $player->sendMessage(TextFormat::GREEN . 'You are now a super hero. Look what effect you have received!');

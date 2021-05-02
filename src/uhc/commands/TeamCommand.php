@@ -130,7 +130,7 @@ class TeamCommand extends Command
                     return;
                 }
 
-                if (!isset($this->invite[$sender->getName()])) {
+                if (!isset($this->invite[$sender->getName()]) || count($this->invite[$sender->getName()]) == 0) {
                     $sender->sendMessage(TextFormat::RED . 'You have not received invitations for now.');
                     return;
                 }
